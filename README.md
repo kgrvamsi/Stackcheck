@@ -1,4 +1,4 @@
-Openstack-MarketPlace
+Stackcheck
 =====================
 
-Openstack MarketPlace 
+Openstack Service Monitoring Application 
