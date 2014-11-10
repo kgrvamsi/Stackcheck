@@ -1,0 +1,8 @@
+Django==1.4
+selenium
+unittest2
+testtools
+mock
+django-extensions
+fabric
+psutil

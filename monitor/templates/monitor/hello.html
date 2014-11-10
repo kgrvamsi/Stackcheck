@@ -1,0 +1,95 @@
+{% extends './monitor/base.html' %}
+{% include '../templates/_scripts.html' %}
+
+{% block head %}
+    <link href='{{ STATIC_URL }}css/progress.css' type='text/css' media='screen' rel='stylesheet' />
+    <script src='{{ STATIC_URL }}js/progress.js' type='text/javascript' charset='utf-8'></script>
+    <script src='{{ STATIC_URL }}js/stackcheck/js/app.js' type='text/javascript' ></script>
+{% endblock %}
+
+{% block content %}
+
+    {{ env }}
+
+{#    <p data-ng-init="names=['rajesh','suresh','ramesh']"></p>#}
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<div class="progressck">
+  <div class="circle">
+    <span class="label">1</span>
+    <span class="title">Keystone</span>
+  </div>
+  <span class="bar done"></span>
+  <div class="circle">
+    <span class="label">2</span>
+    <span class="title">Nova</span>
+  </div>
+  <span class="bar half"></span>
+  <div class="circle">
+    <span class="label">3</span>
+    <span class="title">Glance</span>
+  </div>
+  <span class="bar"></span>
+  <div class="circle">
+    <span class="label">4</span>
+    <span class="title">Neutron</span>
+  </div>
+  <span class="bar"></span>
+  <div class="circle">
+    <span class="label">5</span>
+    <span class="title">Horizon</span>
+  </div>
+    <span class="bar"></span>
+  <div class="circle">
+    <span class="label">6</span>
+    <span class="title">Finish</span>
+  </div>
+</div>
+    </br>
+<div data-ng-controller="ServiceInfoController">
+{% for dat in data %}
+
+    {% if dat.service_name == "keystone" %}
+
+        <div class="col-md-3" >
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        {{ dat.service_name }}&nbsp&nbsp&nbsp<button data-ng-click="keystoneService()" class="btn btn-primary navbar-btn"><img src="../../../static/img/MD-reload.png"/></button></h4>
+
+                </div>
+                <div class="panel-body text-center">
+                    <h4>IP:{{ dat.ip }}</h4>
+                    <h4>User:root</h4>
+
+                </div>
+                <h5>&nbsp&nbspChecking Services</h5>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item">Service:<strong id="kyservice" style="color: Green ">{{ keystatus }}</strong></li>
+                    <li class="list-group-item">Mysql DB:<strong id="msqlservice" style="color: Green ">Active</strong> </li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>DB Query Check: <strong>Success</strong></li>
+                </ul>
+                <div class="panel-footer">
+                    <a class="btn btn-lg btn-block btn-danger" href="#">EDIT</a>
+                    &nbsp
+                </div>
+            </div>
+        </div>
+
+    {% elif dat.service_name == "glance" %}
+    {% elif dat.service_name == "neutron" %}
+    {% elif dat.service_name == "nova" %}
+    {% elif dat.service_name == "horizon" %}
+
+    {% endif %}
+
+{% empty %}
+         <h4>No Environments available</h4>
+{% endfor %}
+    </div>
+
+    {% block body_scripts %}
+
+    <script src='{{ STATIC_URL }}js/stackcheck/controllers/ServiceInfoController.js' type='text/javascript' ></script>
+{% endblock %}
+{% endblock %}

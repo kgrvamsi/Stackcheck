@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-ng-app="testing">
+
+    <head>
+
+        <title>{% block head_title %}StackCheck{% endblock %}</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link href='{{ STATIC_URL }}css/bootstrap.css' type='text/css' media='screen' rel='stylesheet' />
+<link href='{{ STATIC_URL }}css/progress.css' type='text/css' media='screen' rel='stylesheet' />
+<script src='{{ STATIC_URL }}js/bootstrap.js' type='text/javascript' charset='utf-8'></script>
+<script src='{{ STATIC_URL }}js/progress.js' type='text/javascript' charset='utf-8'></script>
+<script src='{{ STATIC_URL }}js/angular.min.js' type='text/javascript' charset='utf-8'></script>
+    {% block head %}{% endblock %}
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<script>
+    angular.module('testing', [])
+ .config(['$interpolateProvider', function ($interpolateProvider) {
+   $interpolateProvider.startSymbol('[[');
+   $interpolateProvider.endSymbol(']]');
+ }]);
+</script>
+
+    </head>
+    <body>
+    <nav class="navbar navbar-default" role="navigation">
+    <a class="navbar-brand" href="/">{% block title %}StackCheck{% endblock %}</a>
+
+     </nav>
+
+        {% block content %}
+            {% block body_scripts %}
+                {% endblock %}
+        {% endblock %}
+    </body>
+</html>
